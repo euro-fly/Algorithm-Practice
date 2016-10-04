@@ -1,21 +1,49 @@
 import random
+import time
 
-# finds the kth smallest element in myList
-# myList is assumed to be unsorted.
+def swap(myList, x, y):
+    myList[x], myList[y] = myList[y], myList[x]
+
+def partition(myList, start, end):
+    pivot = myList[end]
+    i = start
+    for j in xrange(start, end-1, 1):
+        if myList[j] <= pivot:
+            swap(myList, i, j)
+            i+=1
+    swap(myList, i, end)
+    return end
+
 def quickselect(myList, k):
     left = []
     right= []
-    pivot = myList.pop(random.randint(0, len(myList)))
+    pivot = myList[random.randint(0, len(myList) - 1)]
     for element in myList:
         if element < pivot:
             left.append(element)
         else:
             right.append(element)
-    if len(left) + 1 == k: #if there are exactly k-1 elements smaller than the pivot
+    if len(left) == k - 1: #if there are exactly k-1 elements smaller than the pivot
         return pivot #pivot is therefore the kth smallest, return it
-    elif len(left) + 1 >  k: #but if the left partition is larger or equal to k, then it still contains k
+    elif len(left) >  k - 1: #but if the left partition is larger or equal to k, then it still contains k
         return quickselect(left, k)
-    else: #but if not, then... it's in the right partition
+    elif len(left) < k - 1: #but if not, then... it's in the right partition
         return quickselect(right, k)
+    else:
+        return False
 
-randomList = [7, 10, 4, 3, 20, 15]
+    
+def quickselectInPlace(myList, start, end, k):
+    pivot = partition(myList, start, end)
+    if start < end:
+        if len(myList[start:pivot]) == k - 1:
+            return pivot
+        elif len(myList[start:pivot]) > k - 1:
+            return quickselectInPlace(myList,start,pivot - 1, k)
+        else:
+            return quickselectInPlace(myList,pivot + 1, end, k)
+        
+def selectInPlace(myList, k):
+	return quickselectInPlace(x, 0, len(x) - 1, k)
+
+
