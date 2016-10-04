@@ -36,12 +36,14 @@ def quickselect(myList, k):
 def quickselectInPlace(myList, start, end, k):
     pivot = partition(myList, start, end)
     if start < end:
-        if len(myList[start:pivot]) == k - 1:
-            return pivot
-        elif len(myList[start:pivot]) > k - 1:
+        if len(myList[start:pivot]) == k:
+            return myList[pivot]
+        elif len(myList[start:pivot]) > k:
             return quickselectInPlace(myList,start,pivot - 1, k)
         else:
             return quickselectInPlace(myList,pivot + 1, end, k)
+    else:
+        return
         
 def selectInPlace(myList, k):
 	return quickselectInPlace(x, 0, len(x) - 1, k)
