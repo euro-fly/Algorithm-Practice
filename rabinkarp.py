@@ -19,6 +19,22 @@ def isSubstringPresent(pattern, test, caseSensitive = True):
                     return i
         return False
 
+def firstOccurrenceOfSubstringIfPresent(patterns, test, caseSensitive = True):
+    substringPresence = { }
+    if not caseSensitive:
+        test = test.lower()
+        patterns = [pattern.lower() for pattern in patterns]
+    patternHashes = [hash(pattern) for pattern in patterns]
+    stepCounter = 0
+    while stepCounter < len(test):
+        for i in xrange(0, len(patterns), 1):
+            testHash = hash(test[stepCounter:stepCounter+len(patterns[i])])
+            if patternHashes[i] == testHash:
+                if patterns[i] == test[stepCounter:stepCounter+len(patterns[i])]:
+                    return patterns[i], stepCounter
+        stepCounter+=1
+    return False
+
 def areSubstringsPresent(patterns, test, caseSensitive = True):
     substrings = []
     for pattern in patterns:
