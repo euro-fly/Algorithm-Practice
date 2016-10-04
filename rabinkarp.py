@@ -1,4 +1,5 @@
 # RABIN-KARP IMPLEMENTATION
+# By Jacob Madrid
 # TODO: maybe come up with a better hash() than Python's own
 
 def isSubstringPresent(pattern, test, caseSensitive = True):

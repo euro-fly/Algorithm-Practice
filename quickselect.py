@@ -1,6 +1,10 @@
 import random
 import time
 
+#QUICKSELECT
+#Both in-place and not-in-place
+#By Jacob Madrid
+
 def swap(myList, x, y):
     myList[x], myList[y] = myList[y], myList[x]
 
