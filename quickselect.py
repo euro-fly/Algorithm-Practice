@@ -6,7 +6,8 @@ import time
 #By Jacob Madrid
 
 def partition(myList, start, end):
-    pivot = myList[start]
+    pivot = myList[random.randint(start,end)]
+    myList[pivot], myList[start] = myList[start], myList[pivot]
     left = start+1
     right = end
     done = False

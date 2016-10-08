@@ -1,6 +1,7 @@
 # RABIN-KARP IMPLEMENTATION
 # By Jacob Madrid
 # TODO: maybe come up with a better hash() than Python's own
+# TODO: no, seriously, change the hash() algorithm
 
 def isSubstringPresent(pattern, test, caseSensitive = True):
     if not caseSensitive:
