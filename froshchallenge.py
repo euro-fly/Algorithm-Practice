@@ -24,12 +24,20 @@ def largest_sequence(my_list):
             break
     return my_list[biggest_start:biggest_end+1]
 
+# FUNCTION TWO: Output the largest delta between two consecutive elements
+
 def largest_delta(my_list):
     # The naive solution. Probably not what Frosh wants.
     big_index = 0
     for i in xrange(0, len(my_list), 1):
         if i + 1 < len(my_list):
             delta = my_list[i] - my_list[i + 1]
-            if delta > my_list[big_index] - my_list[big_index + 1]:
+            big_delta = my_list[big_index] - my_list[big_index + 1]
+            #If the delta between i and i+1 is bigger than the one we currently have for our big_index, set it
+            if delta > big_delta:
                 big_index = i
+            elif delta == big_delta
+                # I guess if we were to sell, we'd prefer to sell at the highest valuation (arguably not part of the spec, but whatever)?
+                if my_list[i] > my_list[big_index]:
+                    big_index = i
     return big_index
