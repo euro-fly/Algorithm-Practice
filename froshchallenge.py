@@ -9,7 +9,7 @@ def largest_sequence(my_list):
     biggest_end = 0
     current_start = 0
     current_end = 0
-    for i in xrange(0, len(my_list) - 1, 1):
+    for i in xrange(0, len(my_list), 1):
         if my_list[i] > my_list[current_end]:
             current_end = i
             if sequence_length(current_start, current_end) > sequence_length(biggest_start, biggest_end):
@@ -24,3 +24,12 @@ def largest_sequence(my_list):
             break
     return my_list[biggest_start:biggest_end+1]
 
+def largest_delta(my_list):
+    # The naive solution. Probably not what Frosh wants.
+    big_index = 0
+    for i in xrange(0, len(my_list), 1):
+        if i + 1 < len(my_list):
+            delta = my_list[i] - my_list[i + 1]
+            if delta > my_list[big_index] - my_list[big_index + 1]:
+                big_index = i
+    return big_index
